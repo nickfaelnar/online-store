@@ -2,11 +2,17 @@ package com.nfaelnar.onlinestore.model;
 
 public class OrderItem {
 	
+	private int orderItemId;
 	private int orderId;
 	private int itemId;
-	private String itemInfo;
-	private int itemQuantity;
 	
+	
+	public int getOrderItemId() {
+		return orderItemId;
+	}
+	public void setOrderItemId(int orderItemId) {
+		this.orderItemId = orderItemId;
+	}
 	public int getOrderId() {
 		return orderId;
 	}
@@ -19,19 +25,5 @@ public class OrderItem {
 	public void setItemId(int itemId) {
 		this.itemId = itemId;
 	}
-	public String getItemInfo() {
-		return itemInfo;
-	}
-	public void setItemInfo(String itemInfo) {
-		this.itemInfo = itemInfo;
-	}
-	public int getItemQuantity() {
-		return itemQuantity;
-	}
-	public void setItemQuantity(int itemQuantity) {
-		this.itemQuantity = itemQuantity;
-	}
-	
-	
 
 }

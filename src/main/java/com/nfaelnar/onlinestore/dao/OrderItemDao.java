@@ -3,17 +3,18 @@ package com.nfaelnar.onlinestore.dao;
 import java.util.List;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.stereotype.Repository;
 
 import com.nfaelnar.onlinestore.base.BaseDao;
 import com.nfaelnar.onlinestore.model.OrderItem;
 
+@Repository
 public class OrderItemDao extends BaseDao {
 	
-	private final String GET_ALL_ORDER_ITEMS = "SELECT * FROM order_item WHERE order_id = ?";
+	private final String GET_ALL_ORDER_ITEMS = "SELECT * FROM order_items WHERE order_id = ?";
 	
-	private final String INSERT_ORDER_ITEM = "INSERT INTO order_item(order_id, item_id, item_info, item_quantity) VALUES (?, ?, ?, ?)";
-	private final String UPDATE_ORDER_ITEM = "UPDATE order_item SET item_info = ?, item_quantity = ? WHERE order_id = ? AND item_id = ?";
-	private final String DELETE_ORDER_ITEM = "DELETE FROM order_items WHERE order_id = ? AND item_id = ?";
+	private final String INSERT_ORDER_ITEM = "INSERT INTO order_items(order_id, item_id) VALUES (?, ?)";
+	private final String DELETE_ORDER_ITEM = "DELETE FROM order_items WHERE order_item_id = ?";
 	
 	public List<OrderItem> getOrderItems(int orderId) {
 		@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -22,15 +23,11 @@ public class OrderItemDao extends BaseDao {
 	}
 	
 	public void addOrderItem(OrderItem orderItem) {
-		getJdbcTemplate().update(INSERT_ORDER_ITEM, orderItem.getOrderId(), orderItem.getItemId(), orderItem.getItemInfo(), orderItem.getItemQuantity());
+		getJdbcTemplate().update(INSERT_ORDER_ITEM, orderItem.getOrderId(), orderItem.getItemId());
 	}
 	
-	public void updateOrderItem(OrderItem orderItem) {
-		getJdbcTemplate().update(UPDATE_ORDER_ITEM, orderItem.getItemInfo(), orderItem.getItemQuantity(), orderItem.getOrderId(), orderItem.getItemId());
-	}
-	
-	public void deleteOrderItem(OrderItem orderItem) {
-		getJdbcTemplate().update(DELETE_ORDER_ITEM, orderItem.getOrderId(), orderItem.getItemId());
+	public void deleteOrderItem(int orderItemId) {
+		getJdbcTemplate().update(DELETE_ORDER_ITEM, orderItemId);
 	}
 	
 }

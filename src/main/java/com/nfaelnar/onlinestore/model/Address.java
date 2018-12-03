@@ -7,7 +7,7 @@ public class Address {
 	private String houseBldgSt;
 	private String brgy;
 	private String city;
-	private String province;
+	private String prov;
 	
 	public int getAddressId() {
 		return addressId;
@@ -39,11 +39,11 @@ public class Address {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	public String getProvince() {
-		return province;
+	public String getProv() {
+		return prov;
 	}
-	public void setProvince(String province) {
-		this.province = province;
+	public void setProv(String prov) {
+		this.prov = prov;
 	}
 	
 	
